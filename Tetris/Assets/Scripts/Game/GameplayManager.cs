@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -10,11 +9,6 @@ public class GameplayManager : MonoBehaviour {
 	void Start () {
         StartCoroutine(CountToStart(4, "Start"));
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     
     public void ResumeGame() {
         StartCoroutine(CountToStart(4, "Continue"));
@@ -27,8 +21,7 @@ public class GameplayManager : MonoBehaviour {
             seconds--;
             if(seconds == 0) {
                 timerText.text = textMessage;
-            }
-            else {
+            } else {
                 timerText.text = seconds.ToString();
             }
             yield return new WaitForSeconds(1);
