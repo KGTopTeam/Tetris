@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tetrismino : MonoBehaviour {
 
-    float fall = 0;
+    float fall = 1;
 
     public float fallSpeed = 1;
 
@@ -17,6 +18,8 @@ public class Tetrismino : MonoBehaviour {
 
     private AudioSource audioSource;
 
+    public bool isPause = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,62 +29,44 @@ public class Tetrismino : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckUserInput();
+        CheckPause();
 	}
 
     void CheckUserInput () {
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if (!isPause)
         {
-            transform.position += new Vector3(1, 0, 0);
-
-            if (CheckIsValidPosition())
-            {
-                FindObjectOfType<Game>().UpdateGrid(this);
-
-                PlayMoveAudio();
-            } else {
-                transform.position += new Vector3(-1, 0, 0);
-            }
-        } 
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            transform.position += new Vector3(-1, 0, 0);
-
-            if (CheckIsValidPosition())
-            {
-                FindObjectOfType<Game>().UpdateGrid(this);
-                PlayMoveAudio();
-            }
-            else
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 transform.position += new Vector3(1, 0, 0);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (allowRotation)
-            {
-                if (limitRotation)
-                {
-                    if (transform.rotation.eulerAngles.z >= 90)
-                    {
-                        transform.Rotate(0, 0, -90);
-                    }
-                    else
-                    {
-                        transform.Rotate(0, 0, 90);
-                    }
-                }
-                else
-                {
-                    transform.Rotate(0, 0, 90);
-                }
+
                 if (CheckIsValidPosition())
                 {
                     FindObjectOfType<Game>().UpdateGrid(this);
 
-                    PlayRotateAudio();
+                    PlayMoveAudio();
                 }
                 else
+                {
+                    transform.position += new Vector3(-1, 0, 0);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                transform.position += new Vector3(-1, 0, 0);
+
+                if (CheckIsValidPosition())
+                {
+                    FindObjectOfType<Game>().UpdateGrid(this);
+                    PlayMoveAudio();
+                }
+                else
+                {
+                    transform.position += new Vector3(1, 0, 0);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (allowRotation)
                 {
                     if (limitRotation)
                     {
@@ -91,49 +76,73 @@ public class Tetrismino : MonoBehaviour {
                         }
                         else
                         {
-                            transform.Rotate(0, 0, -90);
+                            transform.Rotate(0, 0, 90);
                         }
                     }
                     else
                     {
-                        transform.Rotate(0, 0, -90);
+                        transform.Rotate(0, 0, 90);
+                    }
+                    if (CheckIsValidPosition())
+                    {
+                        FindObjectOfType<Game>().UpdateGrid(this);
+
+                        PlayRotateAudio();
+                    }
+                    else
+                    {
+                        if (limitRotation)
+                        {
+                            if (transform.rotation.eulerAngles.z >= 90)
+                            {
+                                transform.Rotate(0, 0, -90);
+                            }
+                            else
+                            {
+                                transform.Rotate(0, 0, -90);
+                            }
+                        }
+                        else
+                        {
+                            transform.Rotate(0, 0, -90);
+                        }
                     }
                 }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - fall >= fallSpeed)
-        {
-            transform.position += new Vector3(0, -1, 0);
-
-            if (CheckIsValidPosition())
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - fall >= fallSpeed)
             {
-                FindObjectOfType<Game>().UpdateGrid(this);
+                transform.position += new Vector3(0, -1, 0);
 
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (CheckIsValidPosition())
                 {
-                    PlayMoveAudio();
+                    FindObjectOfType<Game>().UpdateGrid(this);
+
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        PlayMoveAudio();
+                    }
+
                 }
-               
-            }
-            else
-            {
-                transform.position += new Vector3(0, 1, 0);
-
-                FindObjectOfType<Game>().DeleteRow();
-
-                enabled = false;
-
-                if (FindObjectOfType<Game>().CheckIsAboveGrid(this))
+                else
                 {
-                    FindObjectOfType<Game>().GameOver();
+                    transform.position += new Vector3(0, 1, 0);
+
+                    FindObjectOfType<Game>().DeleteRow();
+
+                    enabled = false;
+
+                    if (FindObjectOfType<Game>().CheckIsAboveGrid(this))
+                    {
+                        FindObjectOfType<Game>().GameOver();
+                    }
+
+                    PlayLandAudio();
+
+                    FindObjectOfType<Game>().SpawnNextTetrismino();
                 }
 
-                PlayLandAudio();
-
-                FindObjectOfType<Game>().SpawnNextTetrismino();
+                fall = Time.time;
             }
-
-            fall = Time.time;
         }
     }
 
@@ -169,5 +178,22 @@ public class Tetrismino : MonoBehaviour {
     void PlayLandAudio()
     {
         audioSource.PlayOneShot(landSound);
+    }
+
+    public void CheckPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isPause)
+            {
+                isPause = false;
+                FindObjectOfType<Game>().PrintPauseString("");
+            }
+            else
+            {
+                isPause = true;
+                FindObjectOfType<Game>().PrintPauseString("PAUSE");
+            }
+        }
     }
 }

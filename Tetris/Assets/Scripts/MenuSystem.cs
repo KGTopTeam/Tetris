@@ -6,6 +6,21 @@ public class MenuSystem : MonoBehaviour {
     
     public void PlayAgain()
     {
-        Application.LoadLevel("MainScene");
+        Application.LoadLevel("SleepScene");
+    }
+
+    public void Settings()
+    {
+        Application.LoadLevel("SettingsScene");
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        Application.LoadLevel("MainMenuScene");
     }
 }

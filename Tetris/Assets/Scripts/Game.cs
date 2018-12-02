@@ -8,10 +8,10 @@ public class Game : MonoBehaviour {
     public static int gridWight = 10;
     public static int gridHeight = 20;
 
-    public int scoreOneLine = 1;
-    public int scoreTwoLine = 2;
-    public int scoreThreeLine = 3;
-    public int scoreFourLine = 4;
+    public int scoreOneLine = 5;
+    public int scoreTwoLine = 15;
+    public int scoreThreeLine = 45;
+    public int scoreFourLine = 150;
 
     private AudioSource audioSource;
 
@@ -22,6 +22,8 @@ public class Game : MonoBehaviour {
     private string currentTetrismino;
 
     public AudioClip lineCrearedAudio;
+
+    public Text pauseText;
 
     public Text pub_score;
 
@@ -61,6 +63,7 @@ public class Game : MonoBehaviour {
     {
         UpdateScore();
         UpdateUI();
+        CheckUserInput();
     }
 
 
@@ -329,5 +332,18 @@ public class Game : MonoBehaviour {
     public void PlayLineClearedAudio()
     {
         audioSource.PlayOneShot(lineCrearedAudio);
+    }
+
+    public void PrintPauseString(string text)
+    {
+        pauseText.text = text;
+    }
+
+    public void CheckUserInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.LoadLevel("MainMenuScene");
+        }
     }
 }
