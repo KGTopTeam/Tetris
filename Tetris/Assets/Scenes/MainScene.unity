@@ -406,6 +406,13 @@ MonoBehaviour:
   lineCrearedAudio: {fileID: 8300000, guid: 351b18c22b8e77d439825b879d1407b8, type: 3}
   pub_score: {fileID: 1427424090}
   currentScore: 0
+  scoreTextL: {fileID: 1456086558}
+  scoreTextJ: {fileID: 1751458613}
+  scoreTextSquare: {fileID: 2110775793}
+  scoreTextS: {fileID: 1727802979}
+  scoreTextZ: {fileID: 1822344905}
+  scoreTextLong: {fileID: 1469915540}
+  scoreTextT: {fileID: 1332431513}
 --- !u!82 &754334854
 AudioSource:
   m_ObjectHideFlags: 0
@@ -671,7 +678,7 @@ GameObject:
   - component: {fileID: 1332431514}
   - component: {fileID: 1332431513}
   m_Layer: 5
-  m_Name: t_z
+  m_Name: t_t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -863,7 +870,7 @@ GameObject:
   - component: {fileID: 1456086559}
   - component: {fileID: 1456086558}
   m_Layer: 5
-  m_Name: t_j
+  m_Name: t_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +945,7 @@ GameObject:
   - component: {fileID: 1469915541}
   - component: {fileID: 1469915540}
   m_Layer: 5
-  m_Name: t_t
+  m_Name: t_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1248,7 +1255,7 @@ GameObject:
   - component: {fileID: 1727802980}
   - component: {fileID: 1727802979}
   m_Layer: 5
-  m_Name: t_square
+  m_Name: t_s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1323,7 +1330,7 @@ GameObject:
   - component: {fileID: 1751458614}
   - component: {fileID: 1751458613}
   m_Layer: 5
-  m_Name: t_l
+  m_Name: t_j
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1440,7 +1447,7 @@ GameObject:
   - component: {fileID: 1822344906}
   - component: {fileID: 1822344905}
   m_Layer: 5
-  m_Name: t_long
+  m_Name: t_z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1515,7 +1522,7 @@ GameObject:
   - component: {fileID: 2110775794}
   - component: {fileID: 2110775793}
   m_Layer: 5
-  m_Name: t_s
+  m_Name: t_square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
