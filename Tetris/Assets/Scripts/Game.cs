@@ -8,6 +8,7 @@ public class Game : MonoBehaviour {
     public static int gridWight = 10;
     public static int gridHeight = 20;
 
+    public float fallSpeed = 1.0f;
     public int scoreOneLine = 5;
     public int scoreTwoLine = 15;
     public int scoreThreeLine = 45;
@@ -46,6 +47,13 @@ public class Game : MonoBehaviour {
     public Text scoreTextZ;
     public Text scoreTextLong;
     public Text scoreTextT;
+
+    public Text scoreLines;
+
+    public Text scoreLevel;
+
+    public int currentLevel = 0;
+    private int numLinesCleared = 0;
  
     public static Transform[,] grid = new Transform[gridWight, gridHeight];
 	// Use this for initialization
@@ -64,8 +72,21 @@ public class Game : MonoBehaviour {
         UpdateScore();
         UpdateUI();
         CheckUserInput();
+
+        UpdateLevel();
+
+        UpdateSpeed();
     }
 
+    void UpdateLevel()
+    {
+        currentLevel = numLinesCleared / 10;
+    }
+
+    void UpdateSpeed()
+    {
+        fallSpeed = 1.0f - ((float)currentLevel * 0.1f);
+    }
 
     public void UpdateUI()
     {
@@ -77,6 +98,10 @@ public class Game : MonoBehaviour {
         scoreTextSquare.text = scoreSquare.ToString();
         scoreTextT.text = scoreT.ToString();
         scoreTextLong.text = scoreLong.ToString();
+
+        scoreLevel.text = currentLevel.ToString();
+
+        scoreLines.text = numLinesCleared.ToString();
     }
 
     public void UpdateScore(){
@@ -85,18 +110,22 @@ public class Game : MonoBehaviour {
             if(numberOfLinesThisTurn == 1)
             {
                 ClearedOneLine();
+                numLinesCleared++;
             }
             else if(numberOfLinesThisTurn == 2)
             {
                 ClearedTwoLine();
+                numLinesCleared += 2;
             }
             else if(numberOfLinesThisTurn == 3)
             {
                 ClearedThreeLine();
+                numLinesCleared += 3;
             }
             else if(numberOfLinesThisTurn == 4)
             {
                 ClearedFourLine();
+                numLinesCleared += 4;
             }
 
             PlayLineClearedAudio();
