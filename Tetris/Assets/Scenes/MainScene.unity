@@ -418,6 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreConfig: {fileID: 11400000, guid: d3dbda5ef2fee6f49adcd997792aa57f, type: 2}
+  formsConfig: {fileID: 11400000, guid: 32e77854f4388fe4fbd1e43f06feb1b3, type: 2}
   fallSpeed: 1
   lineCrearedAudio: {fileID: 8300000, guid: 351b18c22b8e77d439825b879d1407b8, type: 3}
   pauseText: {fileID: 1671619632}
@@ -432,8 +433,6 @@ MonoBehaviour:
   scoreTextT: {fileID: 1332431513}
   scoreLines: {fileID: 808692398}
   scoreLevel: {fileID: 852427664}
-  inputName: {fileID: 114048051733546710, guid: ed8add0523fc74240b5f7fbe7d9fb0d4,
-    type: 2}
   currentLevel: 10
 --- !u!4 &263242510
 Transform:

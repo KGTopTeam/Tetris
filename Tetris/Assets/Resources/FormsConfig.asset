@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef221e12205a3e7438474dc19c26c15b, type: 3}
   m_Name: FormsConfig
   m_EditorClassIdentifier: 
-  allowT: 0
+  allowT: 1
   allowS: 0
   allowZ: 0
-  allowSquare: 0
+  allowSquare: 1
   allowLong: 0
   allowL: 0
   allowJ: 0
