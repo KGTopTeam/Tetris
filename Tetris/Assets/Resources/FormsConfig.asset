@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: FormsConfig
   m_EditorClassIdentifier: 
   allowT: 1
-  allowS: 0
-  allowZ: 0
+  allowS: 1
+  allowZ: 1
   allowSquare: 1
-  allowLong: 0
-  allowL: 0
-  allowJ: 0
+  allowLong: 1
+  allowL: 1
+  allowJ: 1
