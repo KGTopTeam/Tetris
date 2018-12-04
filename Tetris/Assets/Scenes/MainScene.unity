@@ -435,6 +435,8 @@ MonoBehaviour:
   scoreTextT: {fileID: 1332431513}
   scoreLines: {fileID: 808692398}
   scoreLevel: {fileID: 852427664}
+  inputName: {fileID: 114048051733546710, guid: ed8add0523fc74240b5f7fbe7d9fb0d4,
+    type: 2}
   currentLevel: 10
 --- !u!4 &263242510
 Transform:
@@ -599,7 +601,7 @@ GameObject:
   - component: {fileID: 458317598}
   m_Layer: 5
   m_Name: Canvas_HUB
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
