@@ -24,4 +24,9 @@ public class MenuSystem : MonoBehaviour {
     {
         SceneManager.LoadScene("MainMenuScene");
     }
+
+    public void HighScores()
+    {
+        SceneManager.LoadScene("HighScores");
+    }
 }
