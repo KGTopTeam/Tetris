@@ -9,11 +9,13 @@ public class Game : MonoBehaviour {
     public static int gridWight = 10;
     public static int gridHeight = 20;
 
+    public ScoreConfig scoreConfig;
+
     public float fallSpeed = 1.0f;
-    public int scoreOneLine = 5;
-    public int scoreTwoLine = 15;
-    public int scoreThreeLine = 45;
-    public int scoreFourLine = 150;
+    private int scoreOneLine = 5;
+    private int scoreTwoLine = 15;
+    private int scoreThreeLine = 45;
+    private int scoreFourLine = 150;
 
     private AudioSource audioSource;
 
@@ -57,6 +59,7 @@ public class Game : MonoBehaviour {
     private int numLinesCleared = 0;
  
     public static Transform[,] grid = new Transform[gridWight, gridHeight];
+
 	// Use this for initialization
 	void Start () {
         currentTetrismino = GetRandomTetrismino();
@@ -66,6 +69,10 @@ public class Game : MonoBehaviour {
         SpawnNextTetrismino();
 
         audioSource = GetComponent<AudioSource>();
+
+        LoadSettingsScore();
+
+        Debug.Log(scoreOneLine + " " + scoreTwoLine + " " + scoreThreeLine + " " + scoreFourLine);
 	}
 
     void Update ()
@@ -376,6 +383,17 @@ public class Game : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenuScene");
+        }
+    }
+
+    public void LoadSettingsScore()
+    {
+        if (scoreConfig != null)
+        {
+            scoreOneLine = scoreConfig.getPointForOneLines();
+            scoreTwoLine = scoreConfig.getPointForTwoLines();
+            scoreThreeLine = scoreConfig.getPointForThreeLines();
+            scoreFourLine = scoreConfig.getPointForFourLines();
         }
     }
 }

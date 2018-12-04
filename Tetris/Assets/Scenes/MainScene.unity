@@ -417,11 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6926639146a8d98498f2c636c5655f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreConfig: {fileID: 11400000, guid: d3dbda5ef2fee6f49adcd997792aa57f, type: 2}
   fallSpeed: 1
-  scoreOneLine: 5
-  scoreTwoLine: 15
-  scoreThreeLine: 45
-  scoreFourLine: 150
   lineCrearedAudio: {fileID: 8300000, guid: 351b18c22b8e77d439825b879d1407b8, type: 3}
   pauseText: {fileID: 1671619632}
   pub_score: {fileID: 1427424090}
