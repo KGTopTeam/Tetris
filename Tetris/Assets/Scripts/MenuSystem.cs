@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MenuSystem : MonoBehaviour {
     
     public void PlayAgain()
     {
-        Application.LoadLevel("SleepScene");
+        SceneManager.LoadScene("SleepScene");
     }
 
     public void Settings()
     {
-        Application.LoadLevel("SettingsScene");
+        SceneManager.LoadScene("SettingsScene");
     }
 
     public void Exit()
@@ -21,6 +22,6 @@ public class MenuSystem : MonoBehaviour {
 
     public void MainMenu()
     {
-        Application.LoadLevel("MainMenuScene");
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

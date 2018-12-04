@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,7 +64,7 @@ public class Game : MonoBehaviour {
         nextTetrismino = GetRandomTetrismino();
 
         SpawnNextTetrismino();
-             
+
         audioSource = GetComponent<AudioSource>();
 	}
 
@@ -306,8 +307,9 @@ public class Game : MonoBehaviour {
             Destroy(nextTetrisminoObj);
         }
 
-        nextTetrisminoObj = (GameObject)Instantiate(Resources.Load(nextTetrismino + "_next", typeof(GameObject)), new Vector2(20.0f, 14.0f), Quaternion.identity);
 
+        nextTetrisminoObj = (GameObject)Instantiate(Resources.Load(nextTetrismino + "_next", typeof(GameObject)), new Vector2(20.0f, 14.0f), Quaternion.identity);
+        
         nextTetrismino = GetRandomTetrismino();
     }
 
@@ -355,7 +357,8 @@ public class Game : MonoBehaviour {
 
     public void GameOver ()
     {
-        Application.LoadLevel("GameOver");
+       PlayerPrefs.SetInt("CurrentScore", currentScore);
+       SceneManager.LoadScene("GameOver");
     }
 
     public void PlayLineClearedAudio()
@@ -372,7 +375,7 @@ public class Game : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.LoadLevel("MainMenuScene");
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }
