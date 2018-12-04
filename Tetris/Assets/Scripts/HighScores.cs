@@ -26,8 +26,8 @@ public class HighScores : MonoBehaviour {
             string name = PlayerPrefs.GetString(currentNameRecord, "No name");
             // Modifiying resul string
             recordsResult += string.Format("{0}.\n", (i+1).ToString());
-            namesResult += string.Format("{0}.\n", name);
-            scoresResult += string.Format("{0}.\n", scores);
+            namesResult += string.Format("{0}\n", name);
+            scoresResult += string.Format("{0}\n", scores);
         }
         // Set text
         recordText.text = recordsResult;
