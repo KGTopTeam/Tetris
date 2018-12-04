@@ -11,6 +11,16 @@ public class Game : MonoBehaviour {
 
     public ScoreConfig scoreConfig;
 
+    public FormsConfig formsConfig;
+
+    private bool allowT = true;
+    private bool allowS = true;
+    private bool allowZ = true;
+    private bool allowSquare = true;
+    private bool allowLong = true;
+    private bool allowL = true;
+    private bool allowJ = true;
+
     public float fallSpeed = 1.0f;
     private int scoreOneLine = 5;
     private int scoreTwoLine = 15;
@@ -62,6 +72,10 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        LoadSettingsForms();
+
+        LoadSettingsScore();
+
         currentTetrismino = GetRandomTetrismino();
 
         nextTetrismino = GetRandomTetrismino();
@@ -70,9 +84,37 @@ public class Game : MonoBehaviour {
 
         audioSource = GetComponent<AudioSource>();
 
-        LoadSettingsScore();
-
         Debug.Log(scoreOneLine + " " + scoreTwoLine + " " + scoreThreeLine + " " + scoreFourLine);
+
+        
+        if (allowJ)
+        {
+            Debug.Log("Allow J");
+        }
+        if (allowL)
+        {
+            Debug.Log("Allow L");
+        }
+        if (allowLong)
+        {
+            Debug.Log("Allow Long");
+        }
+        if (allowS)
+        {
+            Debug.Log("Allow S");
+        }
+        if (allowZ)
+        {
+            Debug.Log("Allow Z");
+        }
+        if (allowSquare)
+        {
+            Debug.Log("Allow Square");
+        }
+        if (allowT)
+        {
+            Debug.Log("Allow T");
+        }
 	}
 
     void Update ()
@@ -99,13 +141,62 @@ public class Game : MonoBehaviour {
     public void UpdateUI()
     {
         pub_score.text = currentScore.ToString();
-        scoreTextJ.text = scoreJ.ToString();
-        scoreTextL.text = scoreL.ToString();
-        scoreTextS.text = scoreS.ToString();
-        scoreTextZ.text = scoreZ.ToString();
-        scoreTextSquare.text = scoreSquare.ToString();
-        scoreTextT.text = scoreT.ToString();
-        scoreTextLong.text = scoreLong.ToString();
+        if (allowJ)
+        {
+            scoreTextJ.text = scoreJ.ToString();
+        }
+        else
+        {
+            scoreTextJ.text = "---";
+        }
+        if (allowL)
+        {
+            scoreTextL.text = scoreL.ToString();
+        }
+        else
+        {
+            scoreTextL.text = "---";
+        }
+        if (allowS)
+        {
+            scoreTextS.text = scoreS.ToString();
+        }
+        else
+        {
+            scoreTextS.text = "---";
+        }
+        if (allowZ)
+        {
+            scoreTextZ.text = scoreZ.ToString();
+        }
+        else
+        {
+            scoreTextZ.text = "---";
+        }
+        if (allowSquare)
+        {
+            scoreTextSquare.text = scoreSquare.ToString();
+        }
+        else
+        {
+            scoreTextSquare.text = "---";
+        }
+        if (allowT)
+        {
+            scoreTextT.text = scoreT.ToString();
+        }
+        else
+        {
+            scoreTextT.text = "---";
+        }
+        if (allowLong)
+        {
+            scoreTextLong.text = scoreLong.ToString();
+        }
+        else
+        {
+            scoreTextLong.text = "---";
+        }
 
         scoreLevel.text = currentLevel.ToString();
 
@@ -338,25 +429,74 @@ public class Game : MonoBehaviour {
         switch (randomTetrismino)
         {
             case 1:
-                randomTetrisminoName = "Prefabs/Tetrismino_t";
+                if (allowT)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_t";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
             case 2:
-                randomTetrisminoName = "Prefabs/Tetrismino_long";
+                if (allowLong)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_long";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
             case 3:
-                randomTetrisminoName = "Prefabs/Tetrismino_square";
+                if (allowSquare)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_square";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
             case 4:
-                randomTetrisminoName = "Prefabs/Tetrismino_j";
+                if (allowJ)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_j";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
             case 5:
-                randomTetrisminoName = "Prefabs/Tetrismino_l";
+                if (allowL)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_l";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
             case 6:
-                randomTetrisminoName = "Prefabs/Tetrismino_s";
+                if (allowS)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_s";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
             case 7:
-                randomTetrisminoName = "Prefabs/Tetrismino_z";
+                if (allowZ)
+                {
+                    randomTetrisminoName = "Prefabs/Tetrismino_z";
+                }
+                else
+                {
+                    randomTetrisminoName = GetRandomTetrismino();
+                }
                 break;
         }
         return randomTetrisminoName;
@@ -390,10 +530,24 @@ public class Game : MonoBehaviour {
     {
         if (scoreConfig != null)
         {
-            scoreOneLine = scoreConfig.getPointForOneLines();
-            scoreTwoLine = scoreConfig.getPointForTwoLines();
-            scoreThreeLine = scoreConfig.getPointForThreeLines();
-            scoreFourLine = scoreConfig.getPointForFourLines();
+            scoreOneLine = scoreConfig.pointForOneLines;
+            scoreTwoLine = scoreConfig.pointForTwoLines;
+            scoreThreeLine = scoreConfig.pointForThreeLines;
+            scoreFourLine = scoreConfig.pointForFourLines;
+        }
+    }
+
+    public void LoadSettingsForms()
+    {
+        if (formsConfig != null)
+        {
+            allowJ = formsConfig.allowJ;
+            allowL = formsConfig.allowL;
+            allowLong = formsConfig.allowLong;
+            allowS = formsConfig.allowS;
+            allowT = formsConfig.allowT;
+            allowZ = formsConfig.allowZ;
+            allowSquare = formsConfig.allowSquare;
         }
     }
 }
