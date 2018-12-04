@@ -13,24 +13,4 @@ public class ScoreConfig : ScriptableObject {
     public int pointForThreeLines;
 
     public int pointForFourLines;
-
-    public int getPointForOneLines()
-    {
-        return pointForOneLines;
-    }
-
-    public int getPointForTwoLines()
-    {
-        return pointForTwoLines;
-    }
-
-    public int getPointForThreeLines()
-    {
-        return pointForThreeLines;
-    }
-
-    public int getPointForFourLines()
-    {
-        return pointForFourLines;
-    }
 }
